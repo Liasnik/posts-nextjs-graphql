@@ -5,6 +5,18 @@ query GetPostsEdges {
         id
         title
         date
+        slug
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
         author {
           node {
             name
