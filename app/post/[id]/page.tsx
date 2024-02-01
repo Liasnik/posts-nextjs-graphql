@@ -1,14 +1,30 @@
+import { GET } from '@/app/api/revalidate/route'
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import { GetPostsDocument } from '@/generates/gql/graphql'
 import { client } from '@/lib/requestClient'
+import { Metadata } from 'next'
+
 import Image from 'next/image'
+
+type Props = {
+  params: { id: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const id = params.id
+  const post = await getPost(id)
+
+  return {
+    title: post?.title,
+  }
+}
 
 async function getPost(id: string) {
   const { post } = await client.request(GetPostsDocument, { id })
@@ -41,7 +57,6 @@ export default async function PostPage({
           />
         )}
       </CardContent>
-      <CardFooter className="mt-5"></CardFooter>
     </Card>
   )
 }

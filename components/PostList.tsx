@@ -1,7 +1,4 @@
-import {
-  GetPostsEdgesDocument,
-  GetPostsDocument,
-} from '@/generates/gql/graphql'
+import { GetPostsEdgesDocument } from '@/generates/gql/graphql'
 import { client } from '@/lib/requestClient'
 import CardItem from './CardItem'
 

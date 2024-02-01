@@ -17,31 +17,31 @@ type Props = {
 export default function CardItem({ edge }: Props) {
   return (
     <Card>
-      <CardHeader>
-        {edge.node.slug && (
-          <CardTitle>
-            <Link href={`post/${edge?.node.slug}`}>{edge?.node?.title}</Link>
-          </CardTitle>
-        )}
-        <CardDescription>
-          By {edge?.node?.author?.node.name}{' '}
-          {edge.node.date
-            ? new Date(edge?.node?.date).toLocaleDateString('uk-Uk')
-            : ''}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="relative h-[320px]">
-        {edge.node.featuredImage?.node.sourceUrl && (
-          <Image
-            src={edge.node.featuredImage?.node.sourceUrl}
-            alt={edge.node.featuredImage.node.altText || 'image'}
-            fill
-            // height={edge.node.featuredImage.node.mediaDetails?.height!}
-            // width={edge.node.featuredImage.node.mediaDetails?.width!}
-          />
-        )}
-      </CardContent>
-      <CardFooter className="mt-5"></CardFooter>
+      {edge.node.slug && (
+        <Link href={`post/${edge?.node.slug}`}>
+          <CardHeader>
+            <CardTitle>{edge?.node?.title}</CardTitle>
+            <CardDescription>
+              By {edge?.node?.author?.node.name}{' '}
+              {edge.node.date
+                ? new Date(edge?.node?.date).toLocaleDateString('uk-Uk')
+                : ''}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="relative h-[320px]">
+            {edge.node.featuredImage?.node.sourceUrl && (
+              <Image
+                src={edge.node.featuredImage?.node.sourceUrl}
+                alt={edge.node.featuredImage.node.altText || 'image'}
+                fill
+                // height={edge.node.featuredImage.node.mediaDetails?.height!}
+                // width={edge.node.featuredImage.node.mediaDetails?.width!}
+              />
+            )}
+          </CardContent>
+          <CardFooter className="mt-5"></CardFooter>
+        </Link>
+      )}
     </Card>
   )
 }
